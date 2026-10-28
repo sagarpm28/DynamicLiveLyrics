@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!-- Allow inspecting music player icon resources for accurate 5-signal Liked/Heart state detection on Android 11+ -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+        </intent>
+        <intent>
+            <action android:name="android.media.browse.MediaBrowserService" />
+        </intent>
+    </queries>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
+        android:theme="@style/Theme.DynamicLyricsWidget">
+
+        <!-- Mark widget as unrestricted resizable for Xiaomi HyperOS / MIUI Home Launcher -->
+        <meta-data
+            android:name="miuiWidget"
+            android:value="true" />
+
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden|uiMode">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+
+        <!-- Non-Root MediaSession & Notification Listener Service -->
+        <service
+            android:name=".media.DynamicLyricsNotificationListenerService"
+            android:label="@string/app_name"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+
+        <!-- 30 FPS Live Word-Synced AppWidget Foreground Service -->
+        <service
+            android:name=".widget.DynamicLyricsWidgetService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="mediaPlayback" />
+
+        <!-- 1. Classic Adaptive Widget (4x3 Default, Resizable 2x2 to 8x8) -->
+        <receiver
+            android:name=".widget.DynamicLyricsAppWidgetProvider"
+            android:label="@string/widget_title"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="com.nikolink.dynamiclyrics.ACTION_PLAY_PAUSE" />
+                <action android:name="com.nikolink.dynamiclyrics.ACTION_PREV" />
+                <action android:name="com.nikolink.dynamiclyrics.ACTION_NEXT" />
+                <action android:name="com.nikolink.dynamiclyrics.ACTION_LIKE" />
+                <action android:name="com.nikolink.dynamiclyrics.ACTION_CYCLE_PROVIDER" />
+                <action android:name="com.nikolink.dynamiclyrics.ACTION_SEEK_BACK" />
+                <action android:name="com.nikolink.dynamiclyrics.ACTION_SEEK_FWD" />
+                <action android:name="com.nikolink.dynamiclyrics.ACTION_OPEN_PLAYER" />
+                <action android:name="com.nikolink.dynamiclyrics.ACTION_REFRESH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/dynamic_lyrics_widget_info" />
+        </receiver>
+
+        <!-- 2. Split Side-by-Side Widget (4x2 / 5x3 Left Media + Right Lyrics) -->
+        <receiver
+            android:name=".widget.DynamicLyricsSplitWidgetProvider"
+            android:label="@string/widget_title_split"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/dynamic_lyrics_widget_split_info" />
+        </receiver>
+
+        <!-- 3. Vertical Tower Widget (2x4 / 2x5 Portrait — Bypasses HyperOS Vertical Lock!) -->
+        <receiver
+            android:name=".widget.DynamicLyricsVerticalWidgetProvider"
+            android:label="@string/widget_title_vertical"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/dynamic_lyrics_widget_vertical_info" />
+        </receiver>
+
+        <!-- 4. Compact Horizontal Strip Widget (4x1 / 4x2 Mini Bar) -->
+        <receiver
+            android:name=".widget.DynamicLyricsCompactWidgetProvider"
+            android:label="@string/widget_title_compact"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/dynamic_lyrics_widget_compact_info" />
+        </receiver>
+
+        <!-- 5. Tablet XL Master Stage Widget (6x4 for Xiaomi HyperOS Pad & Tablets) -->
+        <receiver
+            android:name=".widget.DynamicLyricsTabletXlWidgetProvider"
+            android:label="@string/widget_title_tablet_xl"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/dynamic_lyrics_widget_tablet_xl_info" />
+        </receiver>
+
+    </application>
+</manifest>

@@ -1,0 +1,3 @@
+-keepattributes *Annotation*,InnerClasses,Signature
+-dontwarn kotlinx.serialization.**
+-keepclassmembers class com.nikolink.dynamiclyrics.** { *; }

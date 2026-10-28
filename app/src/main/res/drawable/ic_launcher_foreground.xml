@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Mathematically & optically centered at (54.0, 54.0):
+         X spans [36.0 .. 72.0] -> exact center X = 54.0
+         Y spans [31.0 .. 77.0] -> exact center Y = 54.0 -->
+    <path
+        android:fillColor="#FFD8B888"
+        android:pathData="M57,31v27.5c-2.2,-1.6 -5.0,-2.5 -8.0,-2.5c-7.2,0 -13.0,4.7 -13.0,10.5S41.8,77 49.0,77S62,72.3 62,66.5V42h6c2.2,0 4,-1.8 4,-4v-3c0,-2.2 -1.8,-4 -4,-4H57z" />
+</vector>

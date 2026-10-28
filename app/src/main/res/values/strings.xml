@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Dynamic Lyrics Widget</string>
+    <string name="widget_title">Dynamic Lyrics • Classic (4×3)</string>
+    <string name="widget_title_split">Dynamic Lyrics • Split Side-by-Side (4×2)</string>
+    <string name="widget_title_vertical">Dynamic Lyrics • Vertical Tower (2×4)</string>
+    <string name="widget_title_compact">Dynamic Lyrics • Compact Bar (4×1)</string>
+    <string name="widget_title_tablet_xl">Dynamic Lyrics • Tablet XL Stage (6×4)</string>
+    <string name="widget_desc_classic" formatted="false">Live word-synced lyrics widget with HyperOS blur, Material You colors, wavy progress bar &amp; NKB buttons</string>
+    <string name="widget_desc_split" formatted="false">Split layout with album art &amp; buttons on the left and live lyrics on the right</string>
+    <string name="widget_desc_vertical" formatted="false">Tall vertical widget (2×4 / 2×5) with wrapped multi-line lyrics</string>
+    <string name="widget_desc_compact" formatted="false">Compact horizontal bar (4×1 / 4×2) with album art, buttons, 2-line lyrics &amp; wavy bar</string>
+    <string name="widget_desc_tablet_xl" formatted="false">Large 6×4 widget layout made for tablets and wide home screens</string>
+    <string name="notif_channel_name">Dynamic Live Lyrics Service</string>
+    <string name="notif_channel_desc">Updates your home screen lyrics widget while music is playing</string>
+</resources>

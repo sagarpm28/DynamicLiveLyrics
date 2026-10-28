@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
+
+    <ImageView
+        android:id="@+id/widget_canvas_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:contentDescription="@string/widget_title" />
+
+    <!-- Hotspot zones for CLASSIC_STACKED and VERTICAL_TOWER layouts (exact percentage weights matched in Canvas) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="100">
+
+        <!-- Top 9%: Provider Switcher Pill -->
+        <FrameLayout
+            android:id="@+id/btn_provider_pill"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="9"
+            android:background="@android:color/transparent" />
+
+        <!-- Next 25% (9%..34%): Album Art + Track Title/Artist (Open Active Music App) -->
+        <FrameLayout
+            android:id="@+id/btn_header_open_app"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="25"
+            android:background="@android:color/transparent" />
+
+        <!-- Middle 40% (34%..74%): Live Synced Lyrics Stage (Tap to Open Studio) -->
+        <FrameLayout
+            android:id="@+id/btn_lyrics_stage"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="40"
+            android:background="@android:color/transparent" />
+
+        <!-- Progress Bar Row 10% (74%..84%): Visual Show Only (Non-Clickable) -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="10"
+            android:background="@android:color/transparent" />
+
+        <!-- Bottom 16% (84%..100%): 6 Even-Sized NKB Transport Buttons (Prev | -5s | Play/Pause | +5s | Next | Like) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="16"
+            android:orientation="horizontal"
+            android:weightSum="6">
+
+            <FrameLayout
+                android:id="@+id/btn_prev"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent" />
+
+            <FrameLayout
+                android:id="@+id/btn_seek_back"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent" />
+
+            <FrameLayout
+                android:id="@+id/btn_play_pause"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent" />
+
+            <FrameLayout
+                android:id="@+id/btn_seek_fwd"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent" />
+
+            <FrameLayout
+                android:id="@+id/btn_next"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent" />
+
+            <FrameLayout
+                android:id="@+id/btn_like"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
